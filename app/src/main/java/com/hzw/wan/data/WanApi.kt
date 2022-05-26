@@ -6,7 +6,12 @@ import com.hzw.wan.data.dto.Dto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface Api {
+interface WanApi {
+
+    companion object {
+        const val BASE_URL = "https://www.wanandroid.com/"
+    }
+
     @GET("banner/json")
     suspend fun getBanner(): Dto<List<BannerDto>>
 
