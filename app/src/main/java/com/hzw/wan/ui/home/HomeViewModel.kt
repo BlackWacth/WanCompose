@@ -10,12 +10,9 @@ import androidx.paging.cachedIn
 import com.hzw.wan.domain.model.Article
 import com.hzw.wan.domain.model.Banner
 import com.hzw.wan.domain.repository.home.HomeRepository
-import com.hzw.wan.extend.logI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

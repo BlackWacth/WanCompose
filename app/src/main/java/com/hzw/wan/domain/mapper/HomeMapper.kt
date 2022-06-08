@@ -30,6 +30,7 @@ fun ArticleDto.toArticle(): Article {
         pic = envelopePic.ifNullOrBlank(),
         superChapterName = superChapterName.ifNullOrBlank(),
         chapterName = chapterName.ifNullOrBlank(),
-        shareUser = shareUser.ifNullOrBlank()
+        shareUser = shareUser.ifNullOrBlank(),
+        link = link ?: "www.baidu.com"
     )
 }

@@ -25,6 +25,7 @@ import com.hzw.wan.R
 import com.hzw.wan.domain.model.Article
 import com.hzw.wan.domain.model.Banner
 import com.hzw.wan.extend.logW
+import com.hzw.wan.ui.main.enterArticleScreen
 import com.zj.banner.BannerPager
 import com.zj.banner.utils.ImageLoader
 
@@ -51,7 +52,8 @@ fun HomeScreen(navController: NavController) {
                         bannerList = viewModel.bannerState,
                         modifier = Modifier.padding(bottom = 10.dp)
                     ) {
-
+                        val article = Article(title = it.title, link = it.url)
+                        navController.enterArticleScreen(article)
                     }
                 }
                 items(articlePagingItems) { item ->
@@ -62,7 +64,7 @@ fun HomeScreen(navController: NavController) {
                                 .height(96.dp)
                                 .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
                         ) {
-
+                            navController.enterArticleScreen(item)
                         }
                     }
                 }

@@ -2,28 +2,32 @@ package com.hzw.wan.ui.main
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.google.gson.Gson
 import com.hzw.wan.R
+import com.hzw.wan.domain.model.Article
+import com.hzw.wan.ui.article.ArticleScreen
 import com.hzw.wan.ui.home.HomeScreen
 import com.hzw.wan.ui.mine.MineScreen
 import com.hzw.wan.ui.officialAccount.OfficialAccountScreen
 import com.hzw.wan.ui.project.ProjectScreen
 import com.hzw.wan.ui.system.SystemScreen
+import java.net.URLEncoder
 
 sealed class Screen(
     val route: String,
@@ -65,6 +69,20 @@ sealed class Screen(
         R.drawable.ic_mine,
         R.drawable.ic_mine_fill
     )
+
+    object ArticleDetail : Screen(route = "articleDetail", -1, -1, -1) {
+        const val argArticleDetail: String = "article_detail_url"
+
+        val finalRoute: String
+            get() = "${route}/{${argArticleDetail}}"
+
+    }
+}
+
+fun NavController.enterArticleScreen(article: Article) {
+    val json = Gson().toJson(article)
+    val result = URLEncoder.encode(json, "utf-8")
+    navigate("${Screen.ArticleDetail.route}/${result}")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -126,6 +144,17 @@ fun mainScreen() {
             composable(route = Screen.Project.route) { ProjectScreen(navController = navController) }
             composable(route = Screen.OfficialAccount.route) { OfficialAccountScreen(navController = navController) }
             composable(route = Screen.Mine.route) { MineScreen(navController = navController) }
+            composable(
+                route = Screen.ArticleDetail.finalRoute,
+                arguments = listOf(navArgument(name = Screen.ArticleDetail.argArticleDetail) {
+                    type = NavType.StringType
+                })
+            ) { navBackStackEntry ->
+                navBackStackEntry.arguments?.getString(Screen.ArticleDetail.argArticleDetail)?.let {
+                    val article = Gson().fromJson(it, Article::class.java)
+                    ArticleScreen(navController = navController, article = article)
+                }
+            }
         }
     }
 }
