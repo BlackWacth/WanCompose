@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.hzw.wan"
-        minSdk 23
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -57,8 +57,10 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.activity:activity-compose:1.3.1'
+    implementation 'androidx.activity:activity-compose:1.4.0'
 
+    //https://m3.material.io/components/top-app-bar/implementation/android
+    //https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary
     def material_version = "1.0.0-alpha12"
     implementation "androidx.compose.material3:material3:$material_version"
     implementation "androidx.compose.material3:material3-window-size-class:$material_version"
@@ -69,6 +71,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
+
+    //https://developer.android.google.cn/jetpack/androidx/releases/paging?hl=zh-cn
+    def paging_version = "3.1.1"
+    implementation "androidx.paging:paging-runtime:$paging_version"
     implementation "androidx.paging:paging-compose:1.0.0-alpha14"
 
     def nav_version = "2.4.2"
@@ -103,6 +109,9 @@ dependencies {
     implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
     //doc: https://google.github.io/accompanist/webview/
     implementation "com.google.accompanist:accompanist-webview:$accompanist_version"
+
+    // https://github.com/zhujiang521/Banner
+    implementation 'com.github.zhujiang521:Banner:2.2.2'
     
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

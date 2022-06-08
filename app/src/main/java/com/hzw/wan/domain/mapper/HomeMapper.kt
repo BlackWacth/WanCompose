@@ -6,6 +6,7 @@ import com.hzw.wan.domain.model.Article
 import com.hzw.wan.domain.model.Banner
 import com.hzw.wan.extend.ifNull
 import com.hzw.wan.extend.ifNullOrBlank
+import com.hzw.wan.extend.parseHtmlToText
 
 fun BannerDto.toBanner(): Banner {
     return Banner(
@@ -15,7 +16,7 @@ fun BannerDto.toBanner(): Banner {
         title = title.ifNullOrBlank(),
         type = type.ifNull(),
         url = url.ifNullOrBlank(),
-        data = data.ifNullOrBlank()
+        data = imagePath.ifNullOrBlank()
     )
 }
 
@@ -24,7 +25,11 @@ fun ArticleDto.toArticle(): Article {
         audit = audit,
         author = author.ifNullOrBlank(),
         desc = desc.ifNullOrBlank(),
-        title = title.ifNullOrBlank(),
-        type = type
+        title = title.parseHtmlToText(),
+        type = type,
+        pic = envelopePic.ifNullOrBlank(),
+        superChapterName = superChapterName.ifNullOrBlank(),
+        chapterName = chapterName.ifNullOrBlank(),
+        shareUser = shareUser.ifNullOrBlank()
     )
 }

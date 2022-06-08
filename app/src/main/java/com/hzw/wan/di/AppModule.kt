@@ -20,7 +20,7 @@ object AppModule {
     @Singleton
     fun provideWanApi(): WanApi {
         val client = OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().apply {
+            .addNetworkInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
             .build()

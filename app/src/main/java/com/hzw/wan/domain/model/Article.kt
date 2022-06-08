@@ -6,4 +6,8 @@ data class Article(
     val desc: String,
     val title: String,
     val type: Int,
+    val pic: String,
+    val superChapterName: String,
+    val chapterName: String,
+    val shareUser: String
 )

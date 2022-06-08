@@ -1,5 +1,7 @@
 package com.hzw.wan.domain.model
 
+import com.zj.banner.model.BaseBannerBean
+
 data class Banner(
     val desc: String,
     val id: Int,
@@ -7,5 +9,5 @@ data class Banner(
     val title: String,
     val type: Int,
     val url: String,
-    val data: String
-)
+    override val data: String
+): BaseBannerBean()

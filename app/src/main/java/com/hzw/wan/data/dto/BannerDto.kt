@@ -11,5 +11,4 @@ data class BannerDto(
     val type: Int?,
     val url: String?,
     var filePath: String?,
-    val data: String?
 )
