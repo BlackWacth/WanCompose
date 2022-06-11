@@ -25,6 +25,7 @@ import com.hzw.wan.domain.model.Article
 import com.hzw.wan.domain.model.Banner
 import com.hzw.wan.extend.logW
 import com.hzw.wan.ui.main.enterArticleScreen
+import com.hzw.wan.ui.main.enterSearchScreen
 import com.zj.banner.BannerPager
 import com.zj.banner.utils.ImageLoader
 
@@ -48,7 +49,9 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
                     )
                 },
                 actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navController.enterSearchScreen()
+                    }) {
                         Icon(
                             imageVector = Icons.Default.Search,
                             contentDescription = "Search",

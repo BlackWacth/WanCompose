@@ -21,7 +21,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.hzw.wan.R
-import com.hzw.wan.extend.logI
 import com.hzw.wan.ui.home.HomeScreen
 import com.hzw.wan.ui.home.HomeViewModel
 import com.hzw.wan.ui.mine.MineScreen

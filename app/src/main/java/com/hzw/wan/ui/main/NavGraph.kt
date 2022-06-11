@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import com.google.gson.Gson
 import com.hzw.wan.domain.model.Article
 import com.hzw.wan.ui.article.ArticleDetailScreen
+import com.hzw.wan.ui.search.SearchScreen
 import java.net.URLEncoder
 
 @Composable
@@ -23,7 +24,7 @@ fun NavGraph(startDestination: String = AppRouter.Main.route) {
         composable(
             route = AppRouter.Search.route
         ) {
-
+            SearchScreen(navController = navController)
         }
 
         //文章详情
@@ -61,4 +62,8 @@ fun NavController.enterArticleScreen(article: Article) {
     val json = Gson().toJson(article)
     val result = URLEncoder.encode(json, "utf-8")
     navigate("${AppRouter.ArticleDetail.route}/${result}")
+}
+
+fun NavController.enterSearchScreen() {
+    navigate(AppRouter.Search.route)
 }
