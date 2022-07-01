@@ -57,19 +57,23 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation "androidx.compose.runtime:runtime:$compose_version"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation 'androidx.activity:activity-compose:1.4.0'
 
     // https://mvnrepository.com/artifact/com.google.android.material/material
 //    implementation 'com.google.android.material:material:1.7.0-alpha02'
 
     //https://developer.android.google.cn/jetpack/androidx/releases/compose-material?hl=zh-cn
-    implementation "androidx.compose.material:material:1.2.0-beta02"
+    implementation "androidx.compose.material:material:$compose_version"
 
     //https://m3.material.io/components/top-app-bar/implementation/android
     //https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary
     def material_version = "1.0.0-alpha12"
     implementation "androidx.compose.material3:material3:$material_version"
     implementation "androidx.compose.material3:material3-window-size-class:$material_version"
+
+
 
     def lifecycle_version = "2.4.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"

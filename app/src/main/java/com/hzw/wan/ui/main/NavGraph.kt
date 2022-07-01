@@ -47,6 +47,7 @@ sealed class AppRouter(val route: String) {
     object Search : AppRouter("Search")
 
     object ArticleDetail : AppRouter("articleDetail") {
+
         const val argument_url = "art_article_detail"
 
         val finalRoute: String

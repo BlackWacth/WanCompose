@@ -138,10 +138,10 @@ fun MainScreen(navHostController: NavHostController) {
             modifier = Modifier.padding(paddingValues)
         ) {
             composable(route = Screen.Home.route) { HomeScreen(navController = navHostController, viewModel) }
-            composable(route = Screen.System.route) { SystemScreen(navController = navController) }
-            composable(route = Screen.Project.route) { ProjectScreen(navController = navController) }
-            composable(route = Screen.OfficialAccount.route) { OfficialAccountScreen(navController = navController) }
-            composable(route = Screen.Mine.route) { MineScreen(navController = navController) }
+            composable(route = Screen.System.route) { SystemScreen(navController = navHostController) }
+            composable(route = Screen.Project.route) { ProjectScreen(navController = navHostController) }
+            composable(route = Screen.OfficialAccount.route) { OfficialAccountScreen(navController = navHostController) }
+            composable(route = Screen.Mine.route) { MineScreen(navController = navHostController) }
         }
     }
 }

@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.hzw.wan.ui.main.NavGraph
-import com.hzw.wan.ui.theme.Purple40
 import com.hzw.wan.ui.theme.WanComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 

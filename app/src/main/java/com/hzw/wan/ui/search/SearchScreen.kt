@@ -149,14 +149,14 @@ fun SearchScreen(navController: NavController) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview
-@Composable
-fun PreAssistChip() {
-    ElevatedAssistChip(onClick = { /*TODO*/ }, label = {
-        Text(text = "Kotlin", fontSize = 14.sp)
-    }, elevation = null)
-}
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Preview
+//@Composable
+//fun PreAssistChip() {
+//    ElevatedAssistChip(onClick = { /*TODO*/ }, label = {
+//        Text(text = "Kotlin", fontSize = 14.sp)
+//    }, elevation = null)
+//}
 
 @Composable
 fun ChipLayout(
