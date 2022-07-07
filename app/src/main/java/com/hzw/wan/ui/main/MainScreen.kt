@@ -3,6 +3,7 @@ package com.hzw.wan.ui.main
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect

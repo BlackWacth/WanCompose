@@ -1,10 +1,16 @@
 package com.hzw.wan.domain.repository.system
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.hzw.wan.data.PAGE_SIZE
 import com.hzw.wan.data.WanApi
 import com.hzw.wan.data.dto.checkSuccess
 import com.hzw.wan.domain.Resource
 import com.hzw.wan.domain.mapper.toAndroidSystem
 import com.hzw.wan.domain.model.AndroidSystem
+import com.hzw.wan.domain.model.Article
+import com.hzw.wan.domain.repository.paging.SystemArticlePageSource
 import com.hzw.wan.extend.logE
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -27,5 +33,11 @@ class SystemRepositoryImpl @Inject constructor(private val wanApi: WanApi) : Sys
             "获取体系数据异常".logE(throwable = it)
             emit(Resource.Error("获取体系数据异常:${it.message}"))
         }
+    }
+
+    override suspend fun getSystemArticleList(id: Int): Flow<PagingData<Article>> {
+        return Pager(config = PagingConfig(PAGE_SIZE)) {
+            SystemArticlePageSource(wanApi, id)
+        }.flow
     }
 }

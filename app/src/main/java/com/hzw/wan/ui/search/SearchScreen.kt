@@ -35,7 +35,6 @@ fun SearchScreen(navController: NavController) {
     var search by remember {
         mutableStateOf("")
     }
-
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -169,9 +168,11 @@ fun ChipLayout(
         val placeableList = measurables.map {
             it.measure(constraints)
         }
-        "placeableList => ${placeableList.joinToString(transform = {
-            "w = ${it.width}, h = ${it.height}"
-        }, separator = "\n")}".logI()
+        "placeableList => ${
+            placeableList.joinToString(transform = {
+                "w = ${it.width}, h = ${it.height}"
+            }, separator = "\n")
+        }".logI()
         val vSpacingPx = vSpacing.roundToPx()
         val hSpacingPx = hSpacing.roundToPx()
 

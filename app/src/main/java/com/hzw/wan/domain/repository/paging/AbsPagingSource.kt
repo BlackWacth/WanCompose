@@ -17,7 +17,6 @@ abstract class AbsPagingSource : PagingSource<Int, Article>() {
                 it.toArticle()
             }
             "load(${params.javaClass.simpleName}) ==> key = ${params.key}, loadSize = ${params.loadSize}, placeholdersEnabled = ${params.placeholdersEnabled}, listSize = ${list.size}".logI()
-//            val preKey = if (index > 0) index - 1 else null
             val preKey = null
             val nextKey = if (list.isNotEmpty()) index + 1 else null
             LoadResult.Page(list, preKey, nextKey)

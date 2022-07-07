@@ -35,6 +35,7 @@ import com.hzw.wan.domain.model.AndroidSystem
 import com.hzw.wan.domain.model.AndroidSystemChildren
 import com.hzw.wan.extend.logD
 import com.hzw.wan.ui.main.enterSearchScreen
+import com.hzw.wan.ui.main.enterSystemArticleList
 import com.hzw.wan.ui.theme.Purple80
 
 @Composable
@@ -82,7 +83,7 @@ fun SystemScreen(navController: NavController) {
                         viewModel.selectedSystemState.value = it
                     },
                     rightClick = {
-
+                        navController.enterSystemArticleList(it)
                     })
             }
         }
