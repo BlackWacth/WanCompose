@@ -22,6 +22,7 @@ import javax.inject.Singleton
 
 @Singleton
 class SystemRepositoryImpl @Inject constructor(private val wanApi: WanApi) : SystemRepository {
+
     override suspend fun getSystem(): Flow<Resource<List<AndroidSystem>>> {
         return flow {
             emit(Resource.Loading(true))

@@ -11,7 +11,6 @@ abstract class AbsPagingSource : PagingSource<Int, Article>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         return try {
-
             val index = params.key ?: 0
             val list = getArticleList(index).map {
                 it.toArticle()
@@ -26,7 +25,10 @@ abstract class AbsPagingSource : PagingSource<Int, Article>() {
     }
 
     override fun getRefreshKey(state: PagingState<Int, Article>): Int? {
-        return null
+        return state.anchorPosition?.let {
+            val page = state.closestPageToPosition(it)
+            page?.prevKey?.plus(1) ?: page?.nextKey?.minus(1)
+        }
     }
 
     abstract suspend fun getArticleList(index: Int): List<ArticleDto>

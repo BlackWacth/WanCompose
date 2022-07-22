@@ -34,10 +34,10 @@ fun ArticleListScreen(navController: NavController, systemChild: AndroidSystemCh
         systemUiController.setNavigationBarColor(color = Color.Transparent)
     }
 
-    LaunchedEffect(true) {
-        "LaunchedEffect ==> $systemChild".logI()
-        viewModel.getList(systemChild.id)
-    }
+//    LaunchedEffect(systemChild) {
+//        "LaunchedEffect ==> $systemChild".logI()
+//        viewModel.getList(systemChild.id)
+//    }
     val refreshState = rememberSwipeRefreshState(isRefreshing = viewModel.refreshState)
     val articlePagingItems = viewModel.listFlow.collectAsLazyPagingItems()
     Scaffold(

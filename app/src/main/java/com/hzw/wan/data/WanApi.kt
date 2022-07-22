@@ -38,4 +38,24 @@ interface WanApi {
         @Query("cid") cid: Int,
         @Query("page_size") page_size: Int
     ): Dto<ArticleListDto>
+
+    /**
+     * 项目分类
+     * @return
+     */
+    @GET("project/tree/json")
+    suspend fun getProjectCategory(): Dto<List<ProjectCategoryDto>>
+
+    /**
+     * 根据分类ID获取分类数据
+     * @param page
+     * @param cid
+     * @return
+     */
+    @GET("project/list/{page}/json")
+    suspend fun getProject(
+        @Path("page") page: Int,
+        @Query("cid") cid: Int
+    ): Dto<ArticleListDto>
+
 }
