@@ -27,7 +27,7 @@ fun WanTabRow(
         indicator = {
             TabRowDefaults.Indicator(
                 modifier = Modifier.tabIndicatorOffset(it[selectedTabIndex]).offset(y = (-1).dp),
-                height = 2.dp,
+                height = 3.dp,
                 color = MaterialTheme.colorScheme.onPrimary
             )
         }

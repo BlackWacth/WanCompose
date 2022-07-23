@@ -26,19 +26,17 @@ import com.hzw.wan.ui.view.WanTabRow
 fun ProjectScreen(navController: NavController) {
     val viewModel: ProjectViewModel = hiltViewModel()
     val tabState: ProjectTabState by viewModel.tabState.collectAsState()
-    val contentState by viewModel.contentState.collectAsState()
 
-    when (contentState) {
-        ProjectContentState.Loading -> {
+    when (tabState) {
+        ProjectTabState.Loading -> {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(modifier = Modifier)
             }
         }
-        is ProjectContentState.Content -> {
-            val articleItems =
-                (contentState as ProjectContentState.Content).pagingData.collectAsLazyPagingItems()
+        is ProjectTabState.Tabs -> {
+            val articleItems = viewModel.contentFlow.collectAsLazyPagingItems()
             ProjectContent(
-                tabState,
+                tabState as ProjectTabState.Tabs,
                 articleItems,
                 tabClickAndSelected = { index, category ->
                     viewModel.switchTab(index)
@@ -47,7 +45,7 @@ fun ProjectScreen(navController: NavController) {
                     navController.enterArticleScreen(it)
                 })
         }
-        ProjectContentState.Error -> {
+        ProjectTabState.Error, ProjectTabState.Empty -> {
 
         }
     }
@@ -55,7 +53,7 @@ fun ProjectScreen(navController: NavController) {
 
 @Composable
 fun ProjectContent(
-    tabState: ProjectTabState,
+    tabState: ProjectTabState.Tabs,
     articleItems: LazyPagingItems<Article>,
     tabClickAndSelected: (Int, ProjectCategory) -> Unit,
     articleItemClick: (Article) -> Unit
