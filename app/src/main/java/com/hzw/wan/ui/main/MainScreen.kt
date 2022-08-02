@@ -3,7 +3,6 @@ package com.hzw.wan.ui.main
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -25,7 +24,7 @@ import com.hzw.wan.R
 import com.hzw.wan.ui.home.HomeScreen
 import com.hzw.wan.ui.home.HomeViewModel
 import com.hzw.wan.ui.mine.MineScreen
-import com.hzw.wan.ui.officialAccount.OfficialAccountScreen
+import com.hzw.wan.ui.course.CourseScreen
 import com.hzw.wan.ui.project.ProjectScreen
 import com.hzw.wan.ui.system.SystemScreen
 import com.hzw.wan.ui.theme.Purple40
@@ -57,9 +56,9 @@ sealed class Screen(
         R.drawable.ic_project_fill
     )
 
-    object OfficialAccount : Screen(
+    object Course : Screen(
         "OfficialAccount",
-        R.string.official_account,
+        R.string.course,
         R.drawable.ic_official,
         R.drawable.ic_official_fill
     )
@@ -81,7 +80,7 @@ fun MainScreen(navHostController: NavHostController) {
         Screen.Home,
         Screen.System,
         Screen.Project,
-        Screen.OfficialAccount,
+        Screen.Course,
         Screen.Mine,
     )
 
@@ -141,7 +140,7 @@ fun MainScreen(navHostController: NavHostController) {
             composable(route = Screen.Home.route) { HomeScreen(navController = navHostController, viewModel) }
             composable(route = Screen.System.route) { SystemScreen(navController = navHostController) }
             composable(route = Screen.Project.route) { ProjectScreen(navController = navHostController) }
-            composable(route = Screen.OfficialAccount.route) { OfficialAccountScreen(navController = navHostController) }
+            composable(route = Screen.Course.route) { CourseScreen(navController = navHostController) }
             composable(route = Screen.Mine.route) { MineScreen(navController = navHostController) }
         }
     }

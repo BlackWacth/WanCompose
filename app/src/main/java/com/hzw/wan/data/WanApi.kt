@@ -46,6 +46,7 @@ interface WanApi {
     @GET("project/tree/json")
     suspend fun getProjectCategory(): Dto<List<ProjectCategoryDto>>
 
+
     /**
      * 根据分类ID获取分类数据
      * @param page
@@ -58,4 +59,10 @@ interface WanApi {
         @Query("cid") cid: Int
     ): Dto<ArticleListDto>
 
+    /**
+     * 获取课程列表
+     * @return
+     */
+    @GET("chapter/547/sublist/json")
+    suspend fun getCourseList(): Dto<List<CourseDto>>
 }
