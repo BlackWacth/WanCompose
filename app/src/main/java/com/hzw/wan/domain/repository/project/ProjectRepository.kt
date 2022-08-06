@@ -9,6 +9,6 @@ interface ProjectRepository {
 
     fun getProjectCategory(): Flow<List<ProjectCategory>>
 
-    fun getProject(index: Int, cid: Int): Flow<PagingData<Article>>
+    fun getProject(cid: Int): Flow<PagingData<Article>>
 
 }

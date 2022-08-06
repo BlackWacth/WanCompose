@@ -6,7 +6,11 @@ import com.hzw.wan.domain.model.Article
 import com.hzw.wan.domain.model.Banner
 import com.hzw.wan.extend.ifNull
 import com.hzw.wan.extend.ifNullOrBlank
+import com.hzw.wan.extend.millis2String
 import com.hzw.wan.extend.parseHtmlToText
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.time.Duration.Companion.milliseconds
 
 fun BannerDto.toBanner(): Banner {
     return Banner(
@@ -22,6 +26,7 @@ fun BannerDto.toBanner(): Banner {
 
 fun ArticleDto.toArticle(): Article {
     return Article(
+        id = id,
         audit = audit,
         author = author.ifNullOrBlank(),
         desc = desc.ifNullOrBlank(),
@@ -31,6 +36,7 @@ fun ArticleDto.toArticle(): Article {
         superChapterName = superChapterName.ifNullOrBlank(),
         chapterName = chapterName.ifNullOrBlank(),
         shareUser = shareUser.ifNullOrBlank(),
-        link = link ?: "www.baidu.com"
+        link = link ?: "www.baidu.com",
+        publishDate = publishTime.millis2String()
     )
 }

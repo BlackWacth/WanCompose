@@ -65,4 +65,11 @@ interface WanApi {
      */
     @GET("chapter/547/sublist/json")
     suspend fun getCourseList(): Dto<List<CourseDto>>
+
+    @GET("article/list/{index}/json?order_type=1")
+    suspend fun getCourseChapterList(
+        @Path("index") index: Int,
+        @Query("cid") cid: Int,
+        @Query("page_size") pageSize: Int
+    ): Dto<ArticleListDto>
 }

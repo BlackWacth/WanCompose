@@ -10,7 +10,9 @@ import androidx.navigation.compose.rememberNavController
 import com.google.gson.Gson
 import com.hzw.wan.domain.model.AndroidSystemChildren
 import com.hzw.wan.domain.model.Article
+import com.hzw.wan.domain.model.Course
 import com.hzw.wan.ui.article.ArticleDetailScreen
+import com.hzw.wan.ui.course.chapter.CourseChapterScene
 import com.hzw.wan.ui.search.SearchScreen
 import com.hzw.wan.ui.system.list.ArticleListScreen
 import java.net.URLEncoder
@@ -39,6 +41,7 @@ fun NavGraph(startDestination: String = AppRouter.Main.route) {
                 ArticleDetailScreen(navController = navController, article = article)
             }
         }
+        //体系分支列表
         composable(
             route = AppRouter.SystemArticleList.route,
         ) {
@@ -46,6 +49,13 @@ fun NavGraph(startDestination: String = AppRouter.Main.route) {
                 ?.let { child ->
                     ArticleListScreen(navController = navController, systemChild = child)
                 }
+        }
+
+        //教程章节
+        composable(route = AppRouter.CourseChapter.route) {
+            it.arguments?.getParcelable<Course>(AppRouter.CourseChapter.argCourse)?.let { course ->
+                CourseChapterScene(navController = navController, course = course)
+            }
         }
     }
 }
@@ -75,6 +85,10 @@ sealed class AppRouter(val route: String) {
             type = NavType.ParcelableType(AndroidSystemChildren::class.java)
         })
     }
+
+    object CourseChapter : AppRouter("CourseChapter") {
+        const val argCourse = "argCourse"
+    }
 }
 
 fun NavController.enterArticleScreen(article: Article) {
@@ -87,6 +101,10 @@ fun NavController.enterSearchScreen() {
     navigate(AppRouter.Search.route)
 }
 
+/**
+ * 进入体系专题列表
+ * @param child
+ */
 fun NavController.enterSystemArticleList(child: AndroidSystemChildren) {
     navigate(
         AppRouter.SystemArticleList.route,
@@ -96,6 +114,19 @@ fun NavController.enterSystemArticleList(child: AndroidSystemChildren) {
                 child
             )
         })
+}
+
+/**
+ * 进入教程章节
+ * @param course
+ */
+fun NavController.enterCourseChapter(course: Course) {
+    navigate(
+        AppRouter.CourseChapter.route,
+        args = Bundle().apply {
+            putParcelable(AppRouter.CourseChapter.argCourse, course)
+        }
+    )
 }
 
 /**

@@ -34,7 +34,7 @@ class ProjectRepositoryImpl @Inject constructor(private val wanApi: WanApi) : Pr
         }
     }
 
-    override fun getProject(index: Int, cid: Int): Flow<PagingData<Article>> {
+    override fun getProject(cid: Int): Flow<PagingData<Article>> {
         return Pager(
             config = PagingConfig(
                 pageSize = PAGE_SIZE,
@@ -42,7 +42,7 @@ class ProjectRepositoryImpl @Inject constructor(private val wanApi: WanApi) : Pr
                 initialLoadSize = PAGE_SIZE
             )
         ) {
-            createPagingSource {
+            createPagingSource { index ->
                 wanApi.getProject(index, cid).checkSuccess()?.datas?.map { it.toArticle() } ?: emptyList()
             }
         }.flow

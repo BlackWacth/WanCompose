@@ -22,6 +22,7 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.hzw.wan.R
 import com.hzw.wan.domain.Result
 import com.hzw.wan.domain.model.Course
+import com.hzw.wan.ui.main.enterCourseChapter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -66,7 +67,7 @@ fun CourseScreen(navController: NavController) {
                                     .height(90.dp)
                                     .fillMaxWidth()
                             ) {
-
+                                navController.enterCourseChapter(item)
                             }
                         }
                     }

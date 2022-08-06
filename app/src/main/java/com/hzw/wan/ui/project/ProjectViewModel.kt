@@ -69,7 +69,7 @@ class ProjectViewModel @Inject constructor(private val repository: ProjectReposi
 
     var contentFlow: Flow<PagingData<Article>> = emptyFlow()
     private fun getProjectContent(id: Int) {
-        contentFlow = repository.getProject(0, id).cachedIn(viewModelScope)
+        contentFlow = repository.getProject(id).cachedIn(viewModelScope)
     }
 }
 
