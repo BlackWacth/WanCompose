@@ -1,5 +1,7 @@
 package com.hzw.wan.di
 
+import com.hzw.wan.domain.repository.course.CourseRepository
+import com.hzw.wan.domain.repository.course.CourseRepositoryImpl
 import com.hzw.wan.domain.repository.home.HomeRepository
 import com.hzw.wan.domain.repository.home.HomeRepositoryImpl
 import com.hzw.wan.domain.repository.project.ProjectRepository
@@ -31,4 +33,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindProjectRepository(repository: ProjectRepositoryImpl): ProjectRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindCourseRepository(repository: CourseRepositoryImpl): CourseRepository
 }

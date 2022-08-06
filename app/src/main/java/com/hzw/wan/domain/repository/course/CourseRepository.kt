@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface CourseRepository {
 
-    suspend fun getCourseList(): Flow<List<Course>>
+    fun getCourseList(): Flow<List<Course>>
 
 }
