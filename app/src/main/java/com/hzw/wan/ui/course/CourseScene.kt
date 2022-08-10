@@ -5,12 +5,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,11 +17,16 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.hzw.wan.R
 import com.hzw.wan.domain.Result
 import com.hzw.wan.domain.model.Course
+import com.hzw.wan.extend.logI
 import com.hzw.wan.ui.main.enterCourseChapter
+import kotlin.random.Random
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTimedValue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -89,7 +93,7 @@ fun CourseItem(course: Course, modifier: Modifier = Modifier, onClick: () -> Uni
         shadowElevation = 2.dp
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            AsyncImage(model = course.cover, contentDescription = course.name)
+            AsyncImageWithError(model = course.cover, contentDescription = course.name)
             Column(modifier = Modifier.padding(start = 8.dp, end = 8.dp)) {
                 Text(
                     text = course.name,
@@ -114,8 +118,37 @@ fun CourseItem(course: Course, modifier: Modifier = Modifier, onClick: () -> Uni
             }
         }
     }
-
 }
+
+private val defaultImageList = listOf(
+    R.drawable.ic_graph_line,
+    R.drawable.ic_launch_alt,
+    R.drawable.ic_layout,
+    R.drawable.ic_lightbulb,
+    R.drawable.ic_kotlin_hero,
+)
+
+fun getRandomDefaultImage(): Int {
+    val randomIndex = defaultImageList.indices.random()
+    return defaultImageList[randomIndex]
+}
+
+@Composable
+fun AsyncImageWithError(
+    model: Any?,
+    contentDescription: String?,
+    modifier: Modifier = Modifier,
+) {
+    val painter by rememberUpdatedState(newValue = painterResource(id = getRandomDefaultImage()))
+    AsyncImage(
+        model = model,
+        contentDescription = contentDescription,
+        error = painter,
+        modifier = modifier.aspectRatio(1f),
+        fallback = painter,
+    )
+}
+
 
 @Preview()
 @Composable
