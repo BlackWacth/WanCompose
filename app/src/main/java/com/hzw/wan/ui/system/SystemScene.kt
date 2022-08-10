@@ -112,7 +112,7 @@ fun SystemContent(
             items(list, key = { it.id }) {
                 Box(
                     modifier = Modifier
-                        .background(color = if (it.id == selected.id) Color.White else Purple80)
+                        .background(color = if (it.id == selected.id) Color.White else MaterialTheme.colorScheme.primary)
                         .fillMaxWidth()
                         .height(50.dp)
                         .clickable {
@@ -124,6 +124,7 @@ fun SystemContent(
                         text = it.name,
                         modifier = Modifier.padding(horizontal = 10.dp),
                         maxLines = 1,
+                        color = if (it.id == selected.id) Color.Black else MaterialTheme.colorScheme.onPrimary,
                         overflow = TextOverflow.Ellipsis
                     )
                 }

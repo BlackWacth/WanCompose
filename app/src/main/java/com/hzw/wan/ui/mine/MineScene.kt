@@ -5,19 +5,22 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Divider
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.hzw.wan.R
-import com.zj.banner.utils.ImageLoader
 
 @Composable
 fun MineScreen(navController: NavController) {
@@ -46,36 +49,34 @@ fun MineScreen(navController: NavController) {
             }
         }
 
+        SettingItem(icon = painterResource(id = R.drawable.ic_palette), title = "主题") {
+
+        }
+    }
+
+}
+
+@Composable
+fun SettingItem(icon: Painter, title: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Column(modifier = modifier.clickable(onClick = onClick)) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(60.dp)
-                .padding(start = 10.dp)
-                .clickable { },
+                .padding(start = 10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ic_palette),
+                painter = icon,
                 contentDescription = "theme"
             )
             Text(
-                text = "主题",
+                text = title,
                 style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.padding(start = 10.dp)
+                modifier = Modifier.padding(start = 10.dp).weight(1f)
             )
-            Image(
-                painter = painterResource(id = R.drawable.ic_arrow_right),
-                contentDescription = "arrowRight",
-                modifier = Modifier.wrapContentWidth(align = Alignment.End)
-            )
+            Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "arrowRight", modifier = Modifier.wrapContentWidth(Alignment.End))
         }
-        Box(
-            modifier = Modifier
-                .padding(horizontal = 10.dp)
-                .fillMaxWidth()
-                .background(color = Color.Gray)
-                .height(1.dp)
-        )
+        Divider(modifier = Modifier.padding(horizontal = 10.dp))
     }
-
 }

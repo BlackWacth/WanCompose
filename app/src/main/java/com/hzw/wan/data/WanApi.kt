@@ -72,4 +72,6 @@ interface WanApi {
         @Query("cid") cid: Int,
         @Query("page_size") pageSize: Int
     ): Dto<ArticleListDto>
+
+
 }
