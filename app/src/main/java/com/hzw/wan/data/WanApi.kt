@@ -1,9 +1,8 @@
 package com.hzw.wan.data
 
 import com.hzw.wan.data.dto.*
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 const val PAGE_SIZE = 20
 
@@ -73,5 +72,20 @@ interface WanApi {
         @Query("page_size") pageSize: Int
     ): Dto<ArticleListDto>
 
+    @POST("user/login")
+    suspend fun login(
+        @Query("username") username: String,
+        @Query("password") password: String
+    ): Dto<LoginDto>
+
+    @POST("user/register")
+    suspend fun register(
+        @Query("username") username: String,
+        @Query("password") password: String,
+        @Query("repassword") repassword: String
+    ): Dto<LoginDto>
+
+    @GET("user/logout/json")
+    suspend fun getLogout(): Dto<Any>
 
 }
