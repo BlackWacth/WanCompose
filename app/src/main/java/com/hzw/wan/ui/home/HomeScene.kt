@@ -24,6 +24,7 @@ import com.hzw.wan.R
 import com.hzw.wan.domain.model.Article
 import com.hzw.wan.domain.model.Banner
 import com.hzw.wan.extend.logW
+import com.hzw.wan.ui.course.AsyncImageWithError
 import com.hzw.wan.ui.main.enterArticleScreen
 import com.hzw.wan.ui.main.enterSearchScreen
 import com.zj.banner.BannerPager
@@ -80,7 +81,9 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
                         navController.enterArticleScreen(article)
                     }
                 }
-                items(articlePagingItems) { item ->
+                items(articlePagingItems, key = { item ->
+                    item.id
+                }) { item ->
                     item?.let {
                         ArticleItem(
                             article = item,
@@ -127,10 +130,7 @@ fun ArticleItem(
         shape = shape
     ) {
         Row(modifier = Modifier.clickable(onClick = onClick)) {
-            ImageLoader(
-                data = article.pic.ifBlank { R.drawable.img_default },
-                modifier = Modifier.aspectRatio(1f)
-            )
+            AsyncImageWithError(model = article.pic, contentDescription = "pic")
             Column(modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp)) {
                 Text(
                     text = article.title,
