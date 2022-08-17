@@ -21,6 +21,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.hzw.wan.R
+import com.hzw.wan.ui.account.LoginScreen
+import com.hzw.wan.ui.main.enterLogin
 
 @Composable
 fun MineScreen(navController: NavController) {
@@ -29,7 +31,10 @@ fun MineScreen(navController: NavController) {
             modifier = Modifier
                 .background(color = MaterialTheme.colorScheme.primary)
                 .fillMaxWidth()
-                .height(180.dp),
+                .height(180.dp)
+                .clickable {
+                    navController.enterLogin()
+                },
             contentAlignment = Alignment.Center
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -50,7 +55,6 @@ fun MineScreen(navController: NavController) {
         }
 
         SettingItem(icon = painterResource(id = R.drawable.ic_palette), title = "主题") {
-
         }
     }
 
@@ -73,9 +77,15 @@ fun SettingItem(icon: Painter, title: String, modifier: Modifier = Modifier, onC
             Text(
                 text = title,
                 style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.padding(start = 10.dp).weight(1f)
+                modifier = Modifier
+                    .padding(start = 10.dp)
+                    .weight(1f)
             )
-            Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "arrowRight", modifier = Modifier.wrapContentWidth(Alignment.End))
+            Icon(
+                imageVector = Icons.Default.KeyboardArrowRight,
+                contentDescription = "arrowRight",
+                modifier = Modifier.wrapContentWidth(Alignment.End)
+            )
         }
         Divider(modifier = Modifier.padding(horizontal = 10.dp))
     }

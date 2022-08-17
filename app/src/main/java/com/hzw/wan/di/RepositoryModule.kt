@@ -1,5 +1,7 @@
 package com.hzw.wan.di
 
+import com.hzw.wan.domain.repository.account.AccountRepository
+import com.hzw.wan.domain.repository.account.AccountRepositoryImpl
 import com.hzw.wan.domain.repository.course.CourseRepository
 import com.hzw.wan.domain.repository.course.CourseRepositoryImpl
 import com.hzw.wan.domain.repository.home.HomeRepository
@@ -20,15 +22,11 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindHomeRepository(
-        homeRepositoryImpl: HomeRepositoryImpl
-    ): HomeRepository
+    abstract fun bindHomeRepository(homeRepositoryImpl: HomeRepositoryImpl): HomeRepository
 
     @Binds
     @Singleton
-    abstract fun bindSystemRepository(
-        systemRepositoryImpl: SystemRepositoryImpl
-    ): SystemRepository
+    abstract fun bindSystemRepository(systemRepositoryImpl: SystemRepositoryImpl): SystemRepository
 
     @Binds
     @Singleton
@@ -37,4 +35,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindCourseRepository(repository: CourseRepositoryImpl): CourseRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindAccountRepository(repository: AccountRepositoryImpl): AccountRepository
 }

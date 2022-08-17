@@ -11,6 +11,8 @@ import com.google.gson.Gson
 import com.hzw.wan.domain.model.AndroidSystemChildren
 import com.hzw.wan.domain.model.Article
 import com.hzw.wan.domain.model.Course
+import com.hzw.wan.ui.account.LoginScreen
+import com.hzw.wan.ui.account.RegisterScreen
 import com.hzw.wan.ui.article.ArticleDetailScreen
 import com.hzw.wan.ui.course.chapter.CourseChapterScene
 import com.hzw.wan.ui.search.SearchScreen
@@ -57,6 +59,17 @@ fun NavGraph(startDestination: String = AppRouter.Main.route) {
                 CourseChapterScene(navController = navController, course = course)
             }
         }
+
+        // 登录
+        composable(route = AppRouter.Login.route) {
+            LoginScreen(navController = navController)
+        }
+
+        //注册
+        composable(route = AppRouter.Register.route) {
+            RegisterScreen(navController = navController)
+        }
+
     }
 }
 
@@ -89,6 +102,10 @@ sealed class AppRouter(val route: String) {
     object CourseChapter : AppRouter("CourseChapter") {
         const val argCourse = "argCourse"
     }
+
+    object Login : AppRouter("Login")
+
+    object Register : AppRouter("Register")
 }
 
 fun NavController.enterArticleScreen(article: Article) {
@@ -99,6 +116,16 @@ fun NavController.enterArticleScreen(article: Article) {
 
 fun NavController.enterSearchScreen() {
     navigate(AppRouter.Search.route)
+}
+
+fun NavController.enterLogin() {
+    navigate(AppRouter.Login.route)
+}
+
+fun NavController.enterRegister() {
+    navigate(AppRouter.Register.route) {
+        popUpTo(AppRouter.Main.route)
+    }
 }
 
 /**

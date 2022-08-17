@@ -86,6 +86,6 @@ interface WanApi {
     ): Dto<LoginDto>
 
     @GET("user/logout/json")
-    suspend fun getLogout(): Dto<Any>
+    suspend fun logout(): Dto<Any>
 
 }

@@ -57,6 +57,9 @@ class ProjectViewModel @Inject constructor(private val repository: ProjectReposi
                             ProjectTabState.Tabs(result.data, 0)
                         }
                     }
+                    is Result.None -> {
+                        ProjectTabState.Loading
+                    }
                 }
             }.collect { state ->
                 _tabState.value = state
